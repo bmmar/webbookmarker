@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.webjars.bower:github-com-SheetJS-js-xlsx:v0.11.17">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/webjars/bower/github-com-SheetJS-js-xlsx/v0.11.17/github-com-SheetJS-js-xlsx-v0.11.17.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/webjars/bower/github-com-SheetJS-js-xlsx/v0.11.17/github-com-SheetJS-js-xlsx-v0.11.17-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/webjars/bower/github-com-SheetJS-js-xlsx/v0.11.17/github-com-SheetJS-js-xlsx-v0.11.17-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

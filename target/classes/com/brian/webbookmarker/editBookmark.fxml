@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<DialogPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brian.webbookmarker.controllers.EditDialogController">
+
+    <headerText>
+        Complete the following fields:
+    </headerText>
+    <content>
+        <GridPane hgap="10" maxHeight="-Infinity" vgap="20.0">
+            <Label text="Title :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" />
+            <Label text="URL address: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="urlAddressField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Description :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+         <Label text="Category:" GridPane.rowIndex="3" />
+         <ComboBox fx:id="categoryChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </content>
+
+</DialogPane>
