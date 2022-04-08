@@ -13,7 +13,7 @@ public class AppLauncher extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Pane myPane = FXMLLoader.load(getClass().getResource
-                ("mainView.fxml"));
+                ("mainView2.fxml"));
         Scene scene = new Scene(myPane);
         stage.setTitle("Bookmark app");
         stage.setScene(scene);

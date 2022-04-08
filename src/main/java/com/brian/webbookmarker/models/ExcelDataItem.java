@@ -80,8 +80,7 @@ public class ExcelDataItem {
 
     @Override
     public String toString() {
-        return "id = " + getId() + ", title = " + getTitle() + ", urlAddress = "
-                + getUrlAddress() + ", description = " + getDescription() + ", category = " + getCategory();
+        return getTitle();
     }
 
 }
