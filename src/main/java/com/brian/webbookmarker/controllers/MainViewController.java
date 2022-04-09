@@ -26,6 +26,7 @@ public class MainViewController {
     @FXML
     private void initialize() {
 
+
         tableView.setItems(ExcelData.getInstance().getAllData());
 
     }

@@ -2,12 +2,17 @@ package com.brian.webbookmarker.controllers;
 
 import com.brian.webbookmarker.models.ExcelData;
 import com.brian.webbookmarker.models.ExcelDataItem;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -16,8 +21,24 @@ import java.net.URI;
 import java.util.Optional;
 
 public class MainViewController2 {
+
     @FXML
-    public ListView<ExcelDataItem> titlesListView;
+    private TextField idTextField;
+    @FXML
+    private TextArea descriptionTextField;
+    @FXML
+    private TextField categoryTextField;
+    @FXML
+    private ListView<ExcelDataItem> titlesListView;
+    @FXML
+    private VBox mainVBox;
+
+    @FXML
+    private TextField titleTextField;
+    @FXML
+    private TextField urlTextField;
+
+
     @FXML
     private GridPane mainGridPane;
 
@@ -26,19 +47,32 @@ public class MainViewController2 {
 
     @FXML
     private void initialize() {
+        titlesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                if (newValue != null) {
+                    ExcelDataItem bookmarkItem = titlesListView.getSelectionModel().getSelectedItem();
+                    idTextField.setText(bookmarkItem.getIdAsString());
+                    titleTextField.setText(bookmarkItem.getTitle());
+                    urlTextField.setText(bookmarkItem.getUrlAddress());
+                    descriptionTextField.setText(bookmarkItem.getDescription());
+                    categoryTextField.setText(bookmarkItem.getCategory());
+                }
+            }
+        });
 
-        // tableView.setItems(ExcelData.getInstance().getAllData());
         titlesListView.setItems(ExcelData.getInstance().getAllData());
-
+        titlesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        titlesListView.getSelectionModel().selectFirst();
     }
 
     @FXML
     public void handleNewItem() {
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.initOwner(mainGridPane.getScene().getWindow());
+        dialog.initOwner(mainVBox.getScene().getWindow());
         dialog.setTitle("Add new bookmark");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("addBookmark.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/com/brian/webbookmarker/addBookmark.fxml"));
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
         }
@@ -87,14 +121,14 @@ public class MainViewController2 {
     }
 
     public void handleEdit(ActionEvent actionEvent) {
-        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        int selectedIndex = titlesListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            ExcelDataItem item = tableView.getSelectionModel().getSelectedItem();
+            ExcelDataItem item = titlesListView.getSelectionModel().getSelectedItem();
             ShowEditDialog(item);
 
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(mainGridPane.getScene().getWindow());
+            alert.initOwner(mainVBox.getScene().getWindow());
             alert.setTitle("No Selection");
             alert.setHeaderText("No Bookmark Selected");
             alert.setContentText("Please select a bookmark in the table.");
@@ -107,9 +141,9 @@ public class MainViewController2 {
     private void ShowEditDialog(ExcelDataItem item) {
         Dialog<ButtonType> dialog = new Dialog<>();
         FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("editBookmark.fxml"));
+                getClass().getResource("/com/brian/webbookmarker/editBookmark.fxml"));
 
-        dialog.initOwner(mainGridPane.getScene().getWindow());
+        dialog.initOwner(mainVBox.getScene().getWindow());
         dialog.setTitle("Edit bookmark");
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -130,7 +164,7 @@ public class MainViewController2 {
             controller = fxmlLoader.getController();
             controller.processResults(item);
         }
-        tableView.refresh();
+        titlesListView.refresh();
     }
 
     public void handleLaunch(ActionEvent actionEvent) throws IOException {
