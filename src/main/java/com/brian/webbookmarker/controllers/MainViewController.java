@@ -7,6 +7,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -22,7 +25,9 @@ import java.util.Optional;
 
 public class MainViewController {
 
-
+    private Parent myParent;
+    private Scene scene;
+    private Stage stage;
     @FXML
     private TextField idTextField;
     @FXML
@@ -192,6 +197,15 @@ public class MainViewController {
             alert.showAndWait();
 
         }
+    }
+
+    @FXML
+    public void switchToCategoryView(ActionEvent event) throws IOException {
+        myParent = FXMLLoader.load(getClass().getResource("/com/brian/webbookmarker/categoryView.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(myParent);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
