@@ -34,6 +34,7 @@ public class EditDialogController implements Initializable {
         titleField.setText(item.getTitle());
         urlAddressField.setText(item.getUrlAddress());
         descriptionField.setText(item.getDescription());
+        categoryChoiceBox.getSelectionModel().select(item.getCategory());
     }
 
     public void processResults(ExcelDataItem item) {
