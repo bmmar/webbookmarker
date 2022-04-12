@@ -20,9 +20,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainVBox" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brian.webbookmarker.controllers.MainViewController">
+<VBox fx:id="mainVBox" prefHeight="600.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brian.webbookmarker.controllers.MainViewController">
     <children>
-        <MenuBar VBox.vgrow="NEVER">
+        <MenuBar prefHeight="35.0" prefWidth="877.0" VBox.vgrow="NEVER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -48,16 +48,17 @@
             </menus>
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="382.0" prefWidth="723.0" VBox.vgrow="ALWAYS">
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;"
+               text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
             <font>
                 <Font size="18.0" />
             </font>
         </Label>
-        <SplitPane dividerPositions="0.29797979797979796" layoutX="-3.0" prefHeight="549.0" prefWidth="912.0" VBox.vgrow="ALWAYS">
+        <SplitPane dividerPositions="0.2913188647746244" layoutX="-1.0" prefHeight="550.0" prefWidth="958.0" VBox.vgrow="ALWAYS">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane styleClass="background" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
-                        <Label layoutX="14.0" layoutY="10.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Useful Bookmarks" textAlignment="CENTER" wrapText="false">
+                        <Label layoutX="14.0" styleClass="label-bright" layoutY="10.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Useful Bookmarks" textAlignment="CENTER" wrapText="false">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -85,15 +86,15 @@
                                 <RowConstraints maxHeight="265.2000106811523" minHeight="10.0" prefHeight="103.20001220703125" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Label text="Details">
-                                    <font>
+                                <Label styleClass="label-gridpane" text="Details">
+                                    <!--<font>
                                         <Font size="18.0" />
-                                    </font>
+                                    </font>-->
                                     <GridPane.margin>
                                         <Insets left="20.0" />
                                     </GridPane.margin>
                                 </Label>
-                                <ButtonBar prefHeight="33.0" prefWidth="298.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647">
+                                <ButtonBar buttonMinWidth="100.0" prefHeight="33.0" prefWidth="298.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647">
                                     <buttons>
                                         <Button mnemonicParsing="false" onAction="#handleNewItem" text="New.." />
                                         <Button mnemonicParsing="false" onAction="#handleEdit" text="Edit.." />
@@ -134,7 +135,7 @@
                                         <Insets left="20.0" />
                                     </GridPane.margin>
                                 </TextField>
-                                <TextField fx:id="titleTextField" editable="false" mouseTransparent="true" maxWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                <TextField fx:id="titleTextField" editable="false" maxWidth="-Infinity" mouseTransparent="true" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                     <GridPane.margin>
                                         <Insets left="20.0" />
                                     </GridPane.margin>
@@ -144,12 +145,12 @@
                                         <Insets left="20.0" />
                                     </GridPane.margin>
                                 </TextField>
-                                <TextField fx:id="categoryTextField" editable="false" mouseTransparent="true" maxWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                <TextField fx:id="categoryTextField" editable="false" maxWidth="150.0" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                     <GridPane.margin>
                                         <Insets left="20.0" />
                                     </GridPane.margin>
                                 </TextField>
-                                <TextArea fx:id="descriptionTextField" editable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                <TextArea fx:id="descriptionTextField" styleClass="text-field" editable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                     <GridPane.margin>
                                         <Insets bottom="10.0" left="20.0" top="10.0" />
                                     </GridPane.margin>
@@ -163,7 +164,7 @@
                 </AnchorPane>
             </items>
         </SplitPane>
-         <Button layoutX="816.0" layoutY="550.0" mnemonicParsing="false" text="Category View" onAction="#switchToCategoryView" />
+         <Button layoutX="816.0" layoutY="550.0" mnemonicParsing="false" onAction="#switchToCategoryView" text="Category View" />
         </AnchorPane>
     </children>
 </VBox>

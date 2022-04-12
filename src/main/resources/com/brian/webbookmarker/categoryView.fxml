@@ -44,7 +44,7 @@
                     <Font size="18.0"/>
                 </font>
             </Label>
-            <ListView prefHeight="502.0" prefWidth="198.0"/>
+            <ListView fx:id="categoryListView" prefHeight="502.0" prefWidth="198.0"/>
         </VBox>
         <SplitPane dividerPositions="0.3528896672504378" prefHeight="400.0" prefWidth="474.0">
             <VBox prefHeight="380.0" prefWidth="138.0">
@@ -56,7 +56,7 @@
                         <Font size="18.0"/>
                     </font>
                 </Label>
-                <ListView prefHeight="520.0" prefWidth="214.0"/>
+                <ListView fx:id="titlesListView" prefHeight="520.0" prefWidth="214.0"/>
             </VBox>
             <VBox prefHeight="351.0" prefWidth="287.0">
                 <padding>
@@ -113,29 +113,29 @@
                             <Font size="16.0"/>
                         </font>
                     </Label>
-                    <TextField maxWidth="-Infinity" prefHeight="23.0" prefWidth="48.0"
+                    <TextField fx:id="idTextField" maxWidth="-Infinity" prefHeight="23.0" prefWidth="48.0"
                                GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <GridPane.margin>
                             <Insets left="10.0" right="10.0"/>
                         </GridPane.margin>
                     </TextField>
-                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <TextField fx:id="titleTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
                         <GridPane.margin>
                             <Insets left="10.0" right="10.0"/>
                         </GridPane.margin>
                     </TextField>
-                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <TextField fx:id="urlTextField" GridPane.columnIndex="1" GridPane.rowIndex="3">
                         <GridPane.margin>
                             <Insets left="10.0" right="10.0"/>
                         </GridPane.margin>
                     </TextField>
-                    <TextField prefHeight="11.0" prefWidth="275.0" GridPane.columnIndex="1"
+                    <TextField fx:id="categoryTextField" prefHeight="11.0" prefWidth="275.0" GridPane.columnIndex="1"
                                GridPane.rowIndex="5">
                         <GridPane.margin>
                             <Insets left="10.0" right="10.0"/>
                         </GridPane.margin>
                     </TextField>
-                    <TextArea prefHeight="121.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="1"
+                    <TextArea fx:id="descriptionTextArea" prefHeight="121.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="1"
                               GridPane.rowIndex="4">
                         <GridPane.margin>
                             <Insets left="10.0" right="10.0"/>
