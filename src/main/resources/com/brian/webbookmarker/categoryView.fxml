@@ -18,127 +18,119 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="catViewVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-      prefWidth="900.0"
-      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.brian.webbookmarker.controllers.CategoryViewController">
-    <MenuBar>
+<VBox fx:id="catViewVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../ColorfulTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brian.webbookmarker.controllers.CategoryViewController">
+    <MenuBar prefHeight="18.0" prefWidth="900.0">
         <Menu mnemonicParsing="false" text="File">
-            <MenuItem text="New Bookmark" onAction="#handleNewBookmark"/>
-            <MenuItem mnemonicParsing="false" text="Close"/>
+            <MenuItem onAction="#handleNewBookmark" text="New Bookmark" />
+            <MenuItem mnemonicParsing="false" onAction="#exitApp" text="Close" />
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
-            <MenuItem mnemonicParsing="false" text="Delete"/>
+            <MenuItem mnemonicParsing="false" text="Delete" />
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" text="About"/>
+            <MenuItem mnemonicParsing="false" text="About" />
         </Menu>
     </MenuBar>
-    <SplitPane dividerPositions="0.24766042780748657" prefHeight="542.0" prefWidth="900.0">
-        <VBox prefHeight="410.0" prefWidth="217.0">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-            </padding>
-            <Label text="Select Category">
+    <SplitPane dividerPositions="0.24766042780748657" prefHeight="526.0" prefWidth="900.0">
+        <VBox prefHeight="512.0" prefWidth="205.0" styleClass="vbox-category-view">
+            <Label styleClass="label-vbox-heading" text="Select Category">
                 <font>
-                    <Font size="18.0"/>
+                    <Font size="18.0" />
                 </font>
+            <VBox.margin>
+               <Insets left="10.0" top="5.0" />
+            </VBox.margin>
             </Label>
-            <ListView fx:id="categoryListView" prefHeight="502.0" prefWidth="198.0"/>
+            <ListView fx:id="categoryListView" prefHeight="482.0" prefWidth="220.0">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin></ListView>
         </VBox>
-        <SplitPane dividerPositions="0.3528896672504378" prefHeight="400.0" prefWidth="474.0">
-            <VBox prefHeight="380.0" prefWidth="138.0">
-                <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                </padding>
-                <Label text="Bookmarks">
+        <SplitPane dividerPositions="0.3528896672504378" maxHeight="-Infinity" prefHeight="532.0" prefWidth="674.0" snapToPixel="false">
+            <VBox maxHeight="-Infinity" prefHeight="528.0" prefWidth="235.0" styleClass="vbox-category-view">
+                <Label styleClass="label-vbox-heading" text="Bookmarks">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
+               <VBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </VBox.margin>
                 </Label>
-                <ListView fx:id="titlesListView" prefHeight="520.0" prefWidth="214.0"/>
+                <ListView fx:id="titlesListView" prefHeight="520.0" prefWidth="214.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></ListView>
             </VBox>
-            <VBox prefHeight="351.0" prefWidth="287.0">
+            <VBox prefHeight="528.0" prefWidth="433.0" styleClass="grid-pane">
                 <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
-                <Label text="Details">
+                <Label styleClass="label-bright" text="Details">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </Label>
                 <GridPane prefHeight="402.0" prefWidth="413.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.8" minWidth="10.0"
-                                           prefWidth="118.39999237060547"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.4000076293945" minWidth="10.0"
-                                           prefWidth="294.4000076293945"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.8" minWidth="10.0" prefWidth="87.2000244140625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.2000038146973" minWidth="10.0" prefWidth="336.7999755859375" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="85.60001220703126" minHeight="10.0"
-                                        prefHeight="39.199987792968756" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="92.00001220703126" minHeight="10.0"
-                                        prefHeight="60.79998474121092" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="82.40001525878904" minHeight="10.0"
-                                        prefHeight="43.19999999999999" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="142.40001220703124" minHeight="10.0"
-                                        prefHeight="110.40001220703124" vgrow="SOMETIMES"/>
-                        <RowConstraints maxHeight="80.79997558593749" minHeight="0.0"
-                                        prefHeight="55.99998779296874" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="85.60001220703126" minHeight="10.0" prefHeight="39.199987792968756" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="92.00001220703126" minHeight="10.0" prefHeight="60.79998474121092" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="82.40001525878904" minHeight="10.0" prefHeight="43.19999999999999" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="142.40001220703124" minHeight="10.0" prefHeight="110.40001220703124" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="80.79997558593749" minHeight="0.0" prefHeight="55.99998779296874" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <Label text="ID" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                         <font>
-                            <Font size="16.0"/>
+                            <Font size="16.0" />
                         </font>
                     </Label>
                     <Label text="Title" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                         <font>
-                            <Font size="16.0"/>
+                            <Font size="16.0" />
                         </font>
                     </Label>
                     <Label text="URL" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                         <font>
-                            <Font size="16.0"/>
+                            <Font size="16.0" />
                         </font>
                     </Label>
                     <Label text="Description" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                         <font>
-                            <Font size="16.0"/>
+                            <Font size="16.0" />
                         </font>
                     </Label>
-                    <Label prefHeight="38.0" prefWidth="64.0" text="Category" GridPane.halignment="RIGHT"
-                           GridPane.rowIndex="5">
+                    <Label prefHeight="38.0" prefWidth="64.0" text="Category" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                         <font>
-                            <Font size="16.0"/>
+                            <Font size="16.0" />
                         </font>
                     </Label>
-                    <TextField fx:id="idTextField" maxWidth="-Infinity" prefHeight="23.0" prefWidth="48.0"
-                               GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <TextField fx:id="idTextField" maxWidth="-Infinity" prefHeight="23.0" prefWidth="48.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <GridPane.margin>
-                            <Insets left="10.0" right="10.0"/>
+                            <Insets left="10.0" right="10.0" />
                         </GridPane.margin>
                     </TextField>
                     <TextField fx:id="titleTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
                         <GridPane.margin>
-                            <Insets left="10.0" right="10.0"/>
+                            <Insets left="10.0" right="10.0" />
                         </GridPane.margin>
                     </TextField>
                     <TextField fx:id="urlTextField" GridPane.columnIndex="1" GridPane.rowIndex="3">
                         <GridPane.margin>
-                            <Insets left="10.0" right="10.0"/>
+                            <Insets left="10.0" right="10.0" />
                         </GridPane.margin>
                     </TextField>
-                    <TextField fx:id="categoryTextField" prefHeight="11.0" prefWidth="275.0" GridPane.columnIndex="1"
-                               GridPane.rowIndex="5">
+                    <TextField fx:id="categoryTextField" prefHeight="11.0" prefWidth="275.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                         <GridPane.margin>
-                            <Insets left="10.0" right="10.0"/>
+                            <Insets left="10.0" right="10.0" />
                         </GridPane.margin>
                     </TextField>
-                    <TextArea fx:id="descriptionTextArea" prefHeight="121.0" prefWidth="260.0" wrapText="true" GridPane.columnIndex="1"
-                              GridPane.rowIndex="4">
+                    <TextArea fx:id="descriptionTextArea" prefHeight="121.0" prefWidth="260.0" styleClass="text-field" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
                         <GridPane.margin>
-                            <Insets left="10.0" right="10.0"/>
+                            <Insets left="10.0" right="10.0" />
                         </GridPane.margin>
                     </TextArea>
                 </GridPane>
@@ -148,23 +140,22 @@
     <HBox prefHeight="50.0" prefWidth="200.0">
         <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="42.0" prefWidth="768.0">
             <buttons>
-                <Button mnemonicParsing="false" text="New..."/>
-                <Button mnemonicParsing="false" text="Edit..."/>
-                <Button mnemonicParsing="false" text="Launch"/>
-                <Button minWidth="0.0" mnemonicParsing="false" prefHeight="23.0" text="Delete">
+                <Button mnemonicParsing="false" onAction="#handleNewBookmark" text="New..." />
+                <Button mnemonicParsing="false" text="Edit..." />
+                <Button mnemonicParsing="false" text="Launch" />
+                <Button minWidth="0.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="23.0" text="Delete">
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                 </Button>
             </buttons>
             <padding>
-                <Insets left="10.0" right="20.0"/>
+                <Insets left="10.0" right="20.0" />
             </padding>
         </ButtonBar>
-        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="126.0" text="Back to Main View"
-                onAction="#switchToMainView">
+        <Button mnemonicParsing="false" onAction="#switchToMainView" prefHeight="23.0" prefWidth="250.0" text="Back to Main View">
             <HBox.margin>
-                <Insets top="10.0"/>
+                <Insets bottom="10.0" right="10.0" top="10.0" />
             </HBox.margin>
         </Button>
     </HBox>

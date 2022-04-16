@@ -1,44 +1,67 @@
 .background {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: rgb(2,0,36);
+    -fx-background-color: linear-gradient(to top right, rgba(2,0,36,1), rgba(95,33,209,1));
 }
+/*23%, rgba(95,33,209,1) 75%)*/
 
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-opacity: 0.6;
 }
 
 .label-gridpane {
     -fx-font-size: 18pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: black;
+    -fx-font-family: "Yu Gothic UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label-vbox-heading {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Yu Gothic UI Semibold";
+    -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-bright {
     -fx-font-size: 18pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Yu Gothic UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Yu Gothic UI Light";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .list-view {
-    -fx-base: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-     -fx-font-size: 11pt;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    /*-fx-base: #1d1d1d;*/
+    -fx-font-family: "Yu Gothic UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-control-inner-background: #0c1761;
+    -fx-background-color: rgba(95,33,209,1);
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
+
+    -fx-selection-bar:#decefa;
+    -fx-selection-bar-non-focused:#decefa;
+}
+
+.grid-pane {
+-fx-font-family: "Yu Gothic UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-control-inner-background: rgba(97,39,21,1);
+    -fx-background-color: rgb(2,0,36);
+    -fx-background-color: linear-gradient(to top right, rgba(95,33,209,1), rgba(97,39,21,1));
+
+    -fx-padding: 5;
+
 }
 
 .table-view .column-header-background {
@@ -48,7 +71,8 @@
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
-    -fx-background-color: transparent;
+    /*-fx-background-color: rgb(2,0,36);*/
+    -fx-background-color: rgba(97,39,21,1);
     -fx-border-color:
         transparent
         transparent
@@ -59,7 +83,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Yu Gothic UI Light";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -79,7 +103,8 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d,20%);
+    -fx-background-color: rgb(2,0,36);
+    -fx-background-color: linear-gradient(to top right, rgba(2,0,36,1), rgba(95,33,209,1));
 }
 
 .context-menu {
@@ -88,19 +113,26 @@
 
 .menu-bar .label {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Yu Gothic UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
 
 .menu .left-container {
-	-fx-background-color: black;
+	-fx-background-color: rgb(2,0,36);
+    -fx-background-color: linear-gradient(to top right, rgba(2,0,36,1), rgba(97,39,21,1));
 }
 
 .text-field {
+    -fx-background-color: #decefa;
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Yu Gothic UI Semibold";
+    -fx-text-fill: #081b92;
 }
+
+.text-area .content {
+    -fx-background-color: #decefa
+    }
 
 /*
  * Metro style Push Button
@@ -112,8 +144,8 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-color: rgba(95,33,209,1);
+    -fx-font-family: "Yu Gothic UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -150,3 +182,7 @@
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color,30%);
 }
+
+.vbox-category-view {
+    -fx-background-color: #1d1d1d;
+    }

@@ -81,8 +81,7 @@ public class MainViewController {
         fxmlLoader.setLocation(getClass().getResource("/com/brian/webbookmarker/addBookmark.fxml"));
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             return;
         }
@@ -208,4 +207,13 @@ public class MainViewController {
         stage.show();
     }
 
+    public void switchColors(ActionEvent event) {
+        if (mainVBox.getStylesheets().toString().equalsIgnoreCase("[file:/C:/Users/bmmar/javafx/WebBookmarker/target/classes/ColorfulTheme.css]")) {
+            mainVBox.getStylesheets().clear();
+            mainVBox.getStylesheets().add("/DarkTheme.css");
+        } else {
+            mainVBox.getStylesheets().clear();
+            mainVBox.getStylesheets().add("/ColorfulTheme.css");
+        }
+    }
 }

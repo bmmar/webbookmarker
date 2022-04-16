@@ -31,6 +31,16 @@ public class ExcelData {
         return allData;
     }
 
+    public ExcelDataItem getItemFromTitle (String title) {
+        ObservableList<ExcelDataItem> allItems = getAllData();
+        for (ExcelDataItem item : allItems) {
+            if (item.getTitle().equals(title)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public void addItem(ExcelDataItem item) {
         allData.add(item);
     }

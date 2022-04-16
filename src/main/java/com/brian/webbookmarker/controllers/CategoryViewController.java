@@ -47,10 +47,11 @@ public class CategoryViewController {
     private Stage stage;
     private Scene scene;
 
+    private List<ExcelDataItem> fullTitlesList = new ArrayList<>();
+    private ObservableList<ExcelDataItem> selectedList = FXCollections.observableArrayList();
+
     public void initialize() {
         ObservableList<String> catList;
-        List<ExcelDataItem> fullTitlesList =  new ArrayList<>();
-        ObservableList<ExcelDataItem> selectedList = FXCollections.observableArrayList();
         catList = FXCollections.observableArrayList();
 
         categoryListView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<? super String>) (observable, oldValue, newValue) -> {
@@ -137,5 +138,47 @@ public class CategoryViewController {
         }
     }
 
+    public void exitApp(ActionEvent actionEvent) {
+        Stage stage = (Stage) titlesListView.getScene().getWindow();
+        stage.close();
+    }
+
+    public void handleDelete(ActionEvent actionEvent) {
+        ExcelDataItem selectedItem = titlesListView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initOwner(catViewVBox.getScene().getWindow());
+            alert.setTitle("Confirm delete");
+            alert.setHeaderText("Confirm deletion");
+            alert.setContentText("Are you sure?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.CANCEL) {
+                return;
+            }
+            ExcelData.getInstance().getAllData().remove(selectedItem);
+            String selectedCategory = categoryListView.getSelectionModel().getSelectedItem();
+
+            fullTitlesList = ExcelData.getInstance().getAllData();
+            selectedList.clear();
+            for (ExcelDataItem title : fullTitlesList) {
+                if (title.getCategory().equals(selectedCategory)) {
+                    selectedList.add(title);
+                }
+            }
+
+            titlesListView.setItems(selectedList);
+            titlesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            titlesListView.getSelectionModel().selectFirst();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(catViewVBox.getScene().getWindow());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Bookmark Selected");
+            alert.setContentText("Please select a bookmark in the table.");
+
+            alert.showAndWait();
+        }
+    }
 
 }

@@ -20,7 +20,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="mainVBox" prefHeight="600.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brian.webbookmarker.controllers.MainViewController">
+<VBox fx:id="mainVBox" prefHeight="600.0" stylesheets="@../../../ColorfulTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brian.webbookmarker.controllers.MainViewController">
     <children>
         <MenuBar prefHeight="35.0" prefWidth="877.0" VBox.vgrow="NEVER">
             <menus>
@@ -40,6 +40,13 @@
                         <MenuItem onAction="#handleDelete" text="Delete..." />
                     </items>
                 </Menu>
+                <Menu mnemonicParsing="false" text="View">
+                    <items>
+                        <MenuItem onAction="#switchColors" text="Switch Colours" />
+                        <SeparatorMenuItem />
+                        <MenuItem text="Change to Category View" />
+                    </items>
+                </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
                         <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
@@ -48,17 +55,16 @@
             </menus>
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="382.0" prefWidth="723.0" VBox.vgrow="ALWAYS">
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;"
-               text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
             <font>
                 <Font size="18.0" />
             </font>
         </Label>
-        <SplitPane dividerPositions="0.2913188647746244" layoutX="-1.0" prefHeight="550.0" prefWidth="958.0" VBox.vgrow="ALWAYS">
+        <SplitPane dividerPositions="0.2913188647746244" layoutX="-1.0" prefHeight="550.0" prefWidth="958.0" styleClass="background" VBox.vgrow="ALWAYS">
             <items>
-                <AnchorPane styleClass="background" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="background">
                     <children>
-                        <Label layoutX="14.0" styleClass="label-bright" layoutY="10.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Useful Bookmarks" textAlignment="CENTER" wrapText="false">
+                        <Label layoutX="14.0" layoutY="10.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" styleClass="label-bright" text="Useful Bookmarks" textAlignment="CENTER" wrapText="false">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -66,15 +72,16 @@
                                 <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
                             </textFill>
                         </Label>
-                        <ListView fx:id="titlesListView" layoutX="7.0" layoutY="39.0" prefHeight="510.0" prefWidth="263.0" />
+                        <ListView fx:id="titlesListView" layoutX="7.0" layoutY="55.0" prefHeight="494.0" prefWidth="263.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="665.0">
                     <children>
-                        <GridPane layoutX="8.0" layoutY="7.0" prefHeight="285.0" prefWidth="442.0" AnchorPane.bottomAnchor="54.0" AnchorPane.topAnchor="10.0">
+                        <GridPane layoutX="8.0" layoutY="7.0" prefHeight="486.0" prefWidth="577.0" AnchorPane.bottomAnchor="54.0"
+                                  AnchorPane.topAnchor="10.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.20001220703125" minWidth="10.0" prefWidth="139.5999755859375" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="314.79998779296875" minWidth="10.0" prefWidth="304.4000244140625" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.799951171875" minWidth="10.0" prefWidth="115.99995574951171" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.4000198364257" minWidth="10.0" prefWidth="416.8000442504882" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints maxHeight="109.60001220703126" minHeight="0.0" prefHeight="37.999973678588866" vgrow="SOMETIMES" />
@@ -135,7 +142,7 @@
                                         <Insets left="20.0" />
                                     </GridPane.margin>
                                 </TextField>
-                                <TextField fx:id="titleTextField" editable="false" maxWidth="-Infinity" mouseTransparent="true" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                <TextField fx:id="titleTextField" editable="false" maxWidth="-Infinity" mouseTransparent="true" prefHeight="31.0" prefWidth="355.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                     <GridPane.margin>
                                         <Insets left="20.0" />
                                     </GridPane.margin>
@@ -150,7 +157,7 @@
                                         <Insets left="20.0" />
                                     </GridPane.margin>
                                 </TextField>
-                                <TextArea fx:id="descriptionTextField" styleClass="text-field" editable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                <TextArea fx:id="descriptionTextField" editable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" styleClass="text-field" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                     <GridPane.margin>
                                         <Insets bottom="10.0" left="20.0" top="10.0" />
                                     </GridPane.margin>
