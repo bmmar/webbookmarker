@@ -141,8 +141,8 @@
         <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="42.0" prefWidth="768.0">
             <buttons>
                 <Button mnemonicParsing="false" onAction="#handleNewBookmark" text="New..." />
-                <Button mnemonicParsing="false" text="Edit..." />
-                <Button mnemonicParsing="false" text="Launch" />
+                <Button mnemonicParsing="false" text="Edit..." onAction="#handleEdit"/>
+                <Button mnemonicParsing="false" text="Launch" onAction="#handleLaunch"/>
                 <Button minWidth="0.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="23.0" text="Delete">
                     <opaqueInsets>
                         <Insets />

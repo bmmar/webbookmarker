@@ -13,11 +13,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -70,11 +75,11 @@ public class CategoryViewController {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 if (newValue != null) {
                     ExcelDataItem bookmarkItem = titlesListView.getSelectionModel().getSelectedItem();
-                    idTextField.setText(bookmarkItem.getIdAsString());
-                    titleTextField.setText(bookmarkItem.getTitle());
-                    urlTextField.setText(bookmarkItem.getUrlAddress());
-                    descriptionTextArea.setText(bookmarkItem.getDescription());
-                    categoryTextField.setText(bookmarkItem.getCategory());
+                    titleTextField.textProperty().bind(bookmarkItem.titleProperty());
+                    idTextField.textProperty().bind(bookmarkItem.idProperty().asString());
+                    descriptionTextArea.textProperty().bind(bookmarkItem.descriptionProperty());
+                    urlTextField.textProperty().bind(bookmarkItem.urlProperty());
+                    categoryTextField.textProperty().bind(bookmarkItem.categoryProperty());
 
                 }
             }
@@ -134,6 +139,27 @@ public class CategoryViewController {
         }
     }
 
+    public void handleLaunch(ActionEvent actionEvent) throws IOException {
+        ExcelDataItem item = titlesListView.getSelectionModel().getSelectedItem();
+
+        String address;
+        if (item != null) {
+            address = item.getUrlAddress();
+            address = address.contains("https://") ? item.getUrlAddress() : "https://" + item.getUrlAddress();
+            Desktop.getDesktop().browse(URI.create(address));
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(catViewVBox.getScene().getWindow());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Bookmark Selected");
+            alert.setContentText("Please select a bookmark in the table.");
+
+            alert.showAndWait();
+
+        }
+    }
+
+
     public void exitApp(ActionEvent actionEvent) {
         Stage stage = (Stage) titlesListView.getScene().getWindow();
         stage.close();
@@ -176,5 +202,61 @@ public class CategoryViewController {
             alert.showAndWait();
         }
     }
+
+    public void handleEdit(ActionEvent actionEvent) {
+        int selectedIndex = titlesListView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            ExcelDataItem item = titlesListView.getSelectionModel().getSelectedItem();
+            ShowEditDialog(item);
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(catViewVBox.getScene().getWindow());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Bookmark Selected");
+            alert.setContentText("Please select a bookmark in the table.");
+
+            alert.showAndWait();
+        }
+    }
+    //  Here's how to pass data to another scene or in this case another dialog
+
+    private void ShowEditDialog(ExcelDataItem item) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                getClass().getResource("/com/brian/webbookmarker/editBookmark.fxml"));
+
+        dialog.initOwner(catViewVBox.getScene().getWindow());
+        dialog.setTitle("Edit bookmark");
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        EditDialogController controller = fxmlLoader.getController();
+        controller.initData(item);  // the crucial method which gets the item's relevant fields and
+        // uses them to populate the edit dialog
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            controller = fxmlLoader.getController();
+            controller.processResults(item);
+
+            // going to try using an extractor to save having to update everything
+            // when editing...
+            // also binding all these fields to item properties
+            /*idTextField.setText(item.getIdAsString());
+            titleTextField.setText(item.getTitle());
+            urlTextField.setText(item.getUrlAddress());
+            descriptionTextField.setText(item.getDescription());
+            categoryTextField.setText(item.getCategory());*/
+        }
+        //titlesListView.refresh();
+    }
+
 
 }
