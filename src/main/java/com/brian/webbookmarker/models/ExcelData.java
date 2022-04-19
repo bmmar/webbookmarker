@@ -9,7 +9,9 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +54,7 @@ public class ExcelData {
     public void readExcelFileWithHeaderFirstRow(String fileName, boolean allCellHaveData) {
         // data is read as an array list of ExcelDataItems - i.e. a row in the table
         int headerCount = 0;
-        allData = FXCollections.observableArrayList();
+        allData = FXCollections.observableArrayList(ExcelDataItem.extractor);
         myCategories = FXCollections.observableSet();
 
         try (FileInputStream fis = new FileInputStream(fileName);
@@ -195,7 +197,7 @@ public class ExcelData {
             FileOutputStream out = new FileOutputStream("testRead.xlsx");
             workbook.write(out);
             out.close();
-            System.out.println("testRead.xlsx written successfully on disk.");
+            // System.out.println("testRead.xlsx written successfully on disk.");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,7 +1,9 @@
 package com.brian.webbookmarker.models;
 
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.util.Callback;
 
 import java.util.List;
 
@@ -30,6 +32,32 @@ public class ExcelDataItem {
         setUrlAddress(item.get(2));
         setDescription(item.get(3));
         setCategory(item.get(4));
+    }
+
+    public static Callback<ExcelDataItem, Observable[]> extractor =
+            p-> new Observable[] {
+                    p.idProperty(), p.titleProperty(), p.urlProperty(), p.descriptionProperty(),
+                    p.categoryProperty()
+            };
+
+    public SimpleStringProperty categoryProperty() {
+        return category;
+    }
+
+    public SimpleStringProperty descriptionProperty() {
+        return description;
+    }
+
+    public SimpleStringProperty urlProperty() {
+        return urlAddress;
+    }
+
+    public SimpleStringProperty titleProperty() {
+        return title;
+    }
+
+    public SimpleIntegerProperty idProperty() {
+        return id;
     }
 
 

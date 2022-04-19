@@ -58,11 +58,12 @@ public class MainViewController {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 if (newValue != null) {
                     ExcelDataItem bookmarkItem = titlesListView.getSelectionModel().getSelectedItem();
-                    idTextField.setText(bookmarkItem.getIdAsString());
-                    titleTextField.setText(bookmarkItem.getTitle());
-                    urlTextField.setText(bookmarkItem.getUrlAddress());
-                    descriptionTextField.setText(bookmarkItem.getDescription());
-                    categoryTextField.setText(bookmarkItem.getCategory());
+
+                    titleTextField.textProperty().bind(bookmarkItem.titleProperty());
+                    idTextField.textProperty().bind(bookmarkItem.idProperty().asString());
+                    descriptionTextField.textProperty().bind(bookmarkItem.descriptionProperty());
+                    urlTextField.textProperty().bind(bookmarkItem.urlProperty());
+                    categoryTextField.textProperty().bind(bookmarkItem.categoryProperty());
                 }
             }
         });
@@ -152,8 +153,7 @@ public class MainViewController {
         dialog.setTitle("Edit bookmark");
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
             return;
         }
@@ -168,13 +168,17 @@ public class MainViewController {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             controller = fxmlLoader.getController();
             controller.processResults(item);
-            idTextField.setText(item.getIdAsString());
+
+            // going to try using an extractor to save having to update everything
+            // when editing...
+            // also binding all these fields to item properties
+            /*idTextField.setText(item.getIdAsString());
             titleTextField.setText(item.getTitle());
             urlTextField.setText(item.getUrlAddress());
             descriptionTextField.setText(item.getDescription());
-            categoryTextField.setText(item.getCategory());
+            categoryTextField.setText(item.getCategory());*/
         }
-        titlesListView.refresh();
+        //titlesListView.refresh();
     }
 
     public void handleLaunch(ActionEvent actionEvent) throws IOException {
@@ -201,7 +205,7 @@ public class MainViewController {
     @FXML
     public void switchToCategoryView(ActionEvent event) throws IOException {
         myParent = FXMLLoader.load(getClass().getResource("/com/brian/webbookmarker/categoryView.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(myParent);
         stage.setScene(scene);
         stage.show();

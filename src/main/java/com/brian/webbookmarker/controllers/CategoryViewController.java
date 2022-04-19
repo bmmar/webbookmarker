@@ -42,19 +42,15 @@ public class CategoryViewController {
     private TextArea descriptionTextArea;
 
 
-
-    private Parent myParent;
-    private Stage stage;
-    private Scene scene;
-
     private List<ExcelDataItem> fullTitlesList = new ArrayList<>();
-    private ObservableList<ExcelDataItem> selectedList = FXCollections.observableArrayList();
+    private final ObservableList<ExcelDataItem> selectedList = FXCollections.observableArrayList();
 
     public void initialize() {
         ObservableList<String> catList;
         catList = FXCollections.observableArrayList();
 
-        categoryListView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<? super String>) (observable, oldValue, newValue) -> {
+        categoryListView.getSelectionModel().selectedItemProperty().addListener((ChangeListener<? super String>)
+                (observable, oldValue, newValue) -> {
             if (newValue != null) {
                 String catSelected = categoryListView.getSelectionModel().getSelectedItem();
                 List<ExcelDataItem> allData = ExcelData.getInstance().getAllData();
@@ -108,15 +104,15 @@ public class CategoryViewController {
 
     @FXML
     public void switchToMainView(ActionEvent event) throws IOException {
-        myParent = FXMLLoader.load(getClass().getResource("/com/brian/webbookmarker/mainView.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(myParent);
+        Parent myParent = FXMLLoader.load(getClass().getResource("/com/brian/webbookmarker/mainView.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(myParent);
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    private void handleNewBookmark(ActionEvent event) {
+    private void handleNewBookmark() {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(catViewVBox.getScene().getWindow());
         dialog.setTitle("Add new bookmark");
