@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class AppLauncher extends Application {
@@ -27,7 +28,7 @@ public class AppLauncher extends Application {
     @Override
     public void stop() throws Exception {
         try {
-            ExcelData.getInstance().writeExcelFileWithHeaderFirstRow();
+            ExcelData.getInstance().setPersonFilePath(new File("WebAddressData.xml"));
         } catch (Exception e) {
             System.out.println("Unable to save data: " + e.getMessage());
         }
@@ -35,7 +36,7 @@ public class AppLauncher extends Application {
 
     @Override
     public void init() {
-            ExcelData.getInstance().readExcelFileWithHeaderFirstRow("testRead.xlsx", true);
+            ExcelData.getInstance().getPersonFilePath();
     }
 
 }

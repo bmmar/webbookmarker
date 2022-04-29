@@ -6,6 +6,7 @@ module com.brian.exceltotableview {
     requires java.sql;
     requires org.apache.poi.ooxml;
     requires java.desktop;
+    requires java.prefs;
 
 
     opens com.brian.webbookmarker to javafx.fxml;

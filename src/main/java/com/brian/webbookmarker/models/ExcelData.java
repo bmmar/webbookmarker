@@ -1,19 +1,18 @@
 package com.brian.webbookmarker.models;
 
-import javafx.collections.FXCollections;
+import com.brian.webbookmarker.AppLauncher;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.util.prefs.Preferences;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExcelData {
     private ObservableList<ExcelDataItem> allData;
@@ -51,7 +50,7 @@ public class ExcelData {
         return myCategories;
     }
 
-    public void readExcelFileWithHeaderFirstRow(String fileName, boolean allCellHaveData) {
+    /*public void readExcelFileWithHeaderFirstRow(String fileName, boolean allCellHaveData) {
         // data is read as an array list of ExcelDataItems - i.e. a row in the table
         int headerCount = 0;
         allData = FXCollections.observableArrayList(ExcelDataItem.extractor);
@@ -135,6 +134,45 @@ public class ExcelData {
             }
         } catch (IOException ex) {
             System.out.println(ex);
+        }
+    }*/
+
+    /**
+     * Returns the person file preference, i.e. the file that was last opened.
+     * The preference is read from the OS specific registry. If no such
+     * preference can be found, null is returned.
+     *
+     * @return
+     */
+    public File getPersonFilePath() {
+        Preferences prefs = Preferences.userNodeForPackage(AppLauncher.class);
+        String filePath = prefs.get("filePath", null);
+        System.out.println(filePath);
+        if (filePath != null) {
+            return new File(filePath);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Sets the file path of the currently loaded file. The path is persisted in
+     * the OS specific registry.
+     *
+     * @param file the file or null to remove the path
+     */
+    public void setPersonFilePath(File file) {
+        Preferences prefs = Preferences.userNodeForPackage(AppLauncher.class);
+        if (file != null) {
+            prefs.put("filePath", file.getPath());
+
+            // Update the stage title.
+            // primaryStage.setTitle("AddressApp - " + file.getName());
+        } else {
+            prefs.remove("filePath");
+
+            // Update the stage title.
+            // primaryStage.setTitle("AddressApp");
         }
     }
 
